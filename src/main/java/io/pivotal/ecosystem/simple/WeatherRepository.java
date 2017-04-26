@@ -12,5 +12,5 @@ interface WeatherRepository {
 
     @RequestLine("GET /forecast/q/zmw:{zip}.1.99999.json")
     @Headers("Content-Type: application/json")
-    Map<Object, Object> getForcast(@Param("zip") String zip);
+    Map<Object, Object> getForecast(@Param("zip") String zip);
 }

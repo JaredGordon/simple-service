@@ -14,11 +14,11 @@ class WeatherController {
     @Autowired
     WeatherRepository weatherRepository;
 
-    @RequestMapping(value = "/forcast/{zip}", method = RequestMethod.GET)
+    @RequestMapping(value = "/forecast/{zip}", method = RequestMethod.GET)
     public Map<Object, Object> forcast(@PathVariable String zip) {
         if (zip == null) {
             return null;
         }
-        return weatherRepository.getForcast(zip);
+        return weatherRepository.getForecast(zip);
     }
 }

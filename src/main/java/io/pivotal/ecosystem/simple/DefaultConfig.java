@@ -3,6 +3,7 @@ package io.pivotal.ecosystem.simple;
 import feign.Feign;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,7 +12,7 @@ class DefaultConfig {
 
     @Bean
     public WeatherRepository weatherRepository() {
-        return createRepository("http://api.wunderground.com/api/5fcd1f692e126cca");
+        return createRepository("http://api.wunderground.com/api/" + key);
     }
 
     private WeatherRepository createRepository(String url) {
@@ -19,4 +20,7 @@ class DefaultConfig {
                 .encoder(new JacksonEncoder())
                 .decoder(new JacksonDecoder()).target(WeatherRepository.class, url);
     }
+
+    @Value("${API_KEY}")
+    private String key;
 }
