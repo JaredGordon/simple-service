@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>simple-service</artifactId>
+    <artifactId>weather-service</artifactId>
     <version>1.0.0</version>
 
     <parent>
@@ -49,7 +49,7 @@
     </properties>
 
     <build>
-        <finalName>simple-service</finalName>
+        <finalName>weather-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

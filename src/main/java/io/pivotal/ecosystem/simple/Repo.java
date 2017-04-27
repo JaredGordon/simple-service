@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 
-@Repository
-interface WeatherRepository {
+@org.springframework.stereotype.Repository
+interface Repo {
 
     @RequestLine("GET /forecast/q/zmw:{zip}.1.99999.json")
     @Headers("Content-Type: application/json")

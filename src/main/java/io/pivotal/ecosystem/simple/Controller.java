@@ -11,11 +11,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/forecast")
-class WeatherController {
+class Controller {
 
-    private WeatherRepository weatherRepository;
+    private Repo weatherRepository;
 
-    public WeatherController(WeatherRepository weatherRepository) {
+    public Controller(Repo weatherRepository) {
         this.weatherRepository = weatherRepository;
     }
 

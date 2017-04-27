@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Configuration;
 class DefaultConfig {
 
     @Bean
-    public WeatherRepository weatherRepository() {
+    public Repo weatherRepository() {
         return createRepository("http://api.wunderground.com/api/" + key);
     }
 
-    private WeatherRepository createRepository(String url) {
+    private Repo createRepository(String url) {
         return Feign.builder()
                 .encoder(new JacksonEncoder())
-                .decoder(new JacksonDecoder()).target(WeatherRepository.class, url);
+                .decoder(new JacksonDecoder()).target(Repo.class, url);
     }
 
     @Value("${API_KEY}")
