@@ -1,6 +1,7 @@
 package io.pivotal.ecosystem.simple;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,16 +10,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/forecast")
 class WeatherController {
 
-    @Autowired
-    WeatherRepository weatherRepository;
+    private WeatherRepository weatherRepository;
 
-    @RequestMapping(value = "/forecast/{zip}", method = RequestMethod.GET)
-    public Map<Object, Object> forcast(@PathVariable String zip) {
-        if (zip == null) {
-            return null;
-        }
-        return weatherRepository.getForecast(zip);
+    public WeatherController(WeatherRepository weatherRepository) {
+        this.weatherRepository = weatherRepository;
+    }
+
+    @RequestMapping(value = "/{zip}", method = RequestMethod.GET)
+    public ResponseEntity<Map<Object, Object>> forcast(@PathVariable String zip) {
+        return new ResponseEntity<>(weatherRepository.getForecast(zip), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity<String> noLocation() {
+        return new ResponseEntity<>("zipcode required", HttpStatus.BAD_REQUEST);
     }
 }
